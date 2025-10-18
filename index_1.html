@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mandala de Desenvolvimento Docente</title>
+    <style>
+        /* CSS: A aparência da nossa mandala */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f4f8; /* Um fundo suave e neutro */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .mandala-container {
+            position: relative;
+            width: clamp(280px, 80vw, 450px); 
+            height: clamp(280px, 80vw, 450px);
+            transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), filter 0.5s;
+        }
+
+        /* Efeito de "abrir" a flor quando o modal está visível */
+        body.modal-active .mandala-container {
+            transform: scale(0.9) rotate(-15deg);
+            filter: blur(3px);
+        }
+
+        .centro {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 35%;
+            height: 35%;
+            background: radial-gradient(circle, #ffefb3, #ffd54f);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            font-weight: bold;
+            color: #5d4037;
+            border: 5px solid #ffa000;
+            z-index: 10;
+            cursor: default; /* O centro não é clicável */
+            box-shadow: 0 0 20px rgba(255, 160, 0, 0.5), inset 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+       
+        .petala {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-left: -14%; /* Metade da largura de 28% */
+            margin-top: -40%;  /* A altura total de 40% para puxar a base para cima */
+            width: 28%;
+            height: 40%;
+           
+            /* Formato de pétala elegante e curvo */
+            border-radius: 50% 50% 20% 20% / 70% 70% 30% 30%;
+           
+            cursor: pointer;
+            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), background 0.3s;
+            transform-origin: bottom center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+            box-sizing: border-box;
+            font-size: clamp(12px, 2.5vw, 14px);
+            font-weight: bold;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            color: #012a4a;
+            -webkit-tap-highlight-color: transparent; /* Melhora a experiência de toque */
+        }
+
+        /* Cores gradientes de azul para cada pétala */
+        .petala1 { background: linear-gradient(to top, #ade8f4, #caf0f8); border: 2px solid #48cae4; }
+        .petala2 { background: linear-gradient(to top, #90e0ef, #ade8f4); border: 2px solid #00b4d8; }
+        .petala3 { background: linear-gradient(to top, #48cae4, #90e0ef); border: 2px solid #0096c7; }
+        .petala4 { background: linear-gradient(to top, #00b4d8, #48cae4); border: 2px solid #0077b6; }
+        .petala5 { background: linear-gradient(to top, #0096c7, #00b4d8); border: 2px solid #023e8a; }
+        .petala6 { background: linear-gradient(to top, #0077b6, #0096c7); border: 2px solid #03045e; }
+
+        /* Posicionamento mais próximo do centro */
+        .petala1 { transform: rotate(0deg)   translateY(-55%); }
+        .petala2 { transform: rotate(60deg)  translateY(-55%); }
+        .petala3 { transform: rotate(120deg) translateY(-55%); }
+        .petala4 { transform: rotate(180deg) translateY(-55%); }
+        .petala5 { transform: rotate(240deg) translateY(-55%); }
+        .petala6 { transform: rotate(300deg) translateY(-55%); }
+
+        /* EFEITO HOVER */
+        .petala:hover { z-index: 5; }
+        .petala1:hover { background: linear-gradient(to top, #caf0f8, #e9f9fc); transform: rotate(0deg)   translateY(-55%) scale(1.15); }
+        .petala2:hover { background: linear-gradient(to top, #ade8f4, #d7f3f8); transform: rotate(60deg)  translateY(-55%) scale(1.15); }
+        .petala3:hover { background: linear-gradient(to top, #90e0ef, #c1eef7); transform: rotate(120deg) translateY(-55%) scale(1.15); }
+        .petala4:hover { background: linear-gradient(to top, #48cae4, #a0e2f0); transform: rotate(180deg) translateY(-55%) scale(1.15); }
+        .petala5:hover { background: linear-gradient(to top, #00b4d8, #74d8ec); transform: rotate(240deg) translateY(-55%) scale(1.15); }
+        .petala6:hover { background: linear-gradient(to top, #0096c7, #5bbce0); transform: rotate(300deg) translateY(-55%) scale(1.15); }
+
+
+        /* A janela que abre (Modal) */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(5px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.4s, visibility 0.4s;
+            z-index: 100;
+        }
+
+        .modal-overlay.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background-color: white;
+            padding: 30px 40px;
+            border-radius: 15px;
+            max-width: 600px;
+            width: 90%;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.3);
+            transform: translateY(20px) scale(0.95);
+            transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+            position: relative;
+        }
+       
+        .modal-overlay.visible .modal-content {
+            transform: translateY(0) scale(1);
+        }
+
+        .modal-content h2 {
+            margin-top: 0;
+            color: #0077b6; /* Azul para combinar */
+            font-size: 1.8em;
+            border-bottom: 2px solid #f0f4f8;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+       
+        .modal-content p {
+            line-height: 1.6;
+            color: #333;
+            text-align: justify;
+        }
+
+        .close-button {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 2.5em;
+            cursor: pointer;
+            color: #aaa;
+            line-height: 1;
+            transition: color 0.2s, transform 0.2s;
+        }
+       
+        .close-button:hover {
+            color: #333;
+            transform: rotate(90deg);
+        }
+
+        /* Ajustes para dispositivos móveis */
+        @media (max-width: 480px) {
+            .modal-content {
+                padding: 25px 20px;
+            }
+
+            .modal-content h2 {
+                font-size: 1.5em;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- HTML: O esqueleto da mandala -->
+    <div class="mandala-container">
+        <div class="centro">
+            Meu Eu<br>Docente
+        </div>
+
+        <!-- As pétalas -->
+        <div class="petala petala1" data-title="Formação Acadêmica" data-content= "Sou graduado em Medicina Veterinária, com foco clínico em pequenos animais, e pós-graduado em Urgência e Emergência. Desde os 17 anos, tive a oportunidade de atuar como monitor de turmas da Educação Básica e Fundamental, uma experiência que despertou em mim o prazer de compartilhar conhecimento e aprender com cada troca. Apaixonado por tecnologia e inovação, atualmente dedico boa parte do meu tempo ao estudo de programação, buscando unir essas áreas para criar novas formas de cuidar, compreender e transformar o mundo ao meu redor">
+            Formação
+        </div>
+        <div class="petala petala2" data-title="Experiências" data-content="Desde a época de estudante, o ensino sempre me cativou e despertou em mim o desejo constante de aprender algo novo. A construção da docência, de forma a instigar o conhecimento e despertar o interesse pelo aprender, sempre me atraiu e me acompanha como parte de quem sou, seja nas monitorias, auxiliando na construção do saber, ou nas orientações a estagiários.">
+            Prática
+        </div>
+        <div class="petala petala3" data-title="Vivências" data-content="Filho de professores, cresci cercado pelo ambiente escolar, a educação sempre fez parte da minha rotina e da minha formação como pessoa. Na adolescência, atuei como monitor de informática para turmas do Ensino Fundamental I. Já na graduação, participei de projetos e ligas acadêmicas, mas foi na sala de aula que encontrei um espaço que sempre me acompanhou. Antes da pandemia, ministrei aulas de reforço em matemática básica e atuei como professor substituto de matemática para alunos do 6º ao 9º ano. Em determinado momento, afastei-me da docência direta para assumir funções de orientação e coordenação de setor, auxiliando colegas de profissão. Neste ano, retornei à sala de aula como professor substituto de Ciências para turmas do 6º ao 9º ano, reafirmando o quanto o ensino e o compartilhamento de conhecimento continuam sendo parte essencial do que me motiva.">
+            Colaboração
+        </div>
+        <div class="petala petala4" data-title="Desenvolvimento Pessoal" data-content="A frase clássica sempre me acompanhou: “A educação é a única coisa que ninguém pode te roubar.” Sempre tive prazer em aprender e, com o tempo, percebi que também tinha facilidade em ensinar. Gosto de estar em constante aprendizado e de me envolver com o que acontece ao meu redor, buscando participar ativamente da sociedade e contribuir de forma positiva.">
+            Vida Pessoal
+        </div>
+        <div class="petala petala5" data-title="Inovação e Criatividade" data-content="A tecnologia é uma ferramenta incrível. A internet possibilita e facilita todas as coisas imagináveis e até aquelas que ainda nem conseguimos imaginar. O conhecimento sempre existiu, mas com a tecnologia tornou-se muito mais acessível. Hoje, aprender é uma experiência ao alcance de todos, seja por meio de cursos, vivências ou formações. Esse novo mundo é, sem dúvida, algo fascinante.">
+            Inovação
+        </div>
+        <div class="petala petala6" data-title="Visão de Futuro" data-content="Definir quem desejo ser, ou o que serei daqui a um ano ou em qualquer momento da vida, é uma pergunta que me acompanha e desperta em mim a vontade constante de evoluir e aprender. Ainda assim, percebo que o que realmente me traz felicidade é o ato de compartilhar: momentos, vivências e experiências, sempre únicas em sua essência e capazes de transformar não apenas a mim, mas também aqueles que caminham ao meu lado.">
+            Futuro
+        </div>
+    </div>
+
+    <!-- A janela escondida (modal) que aparecerá com o conteúdo -->
+    <div class="modal-overlay" id="modal">
+        <div class="modal-content">
+            <span class="close-button" id="closeButton">&times;</span>
+            <h2 id="modalTitle"></h2>
+            <p id="modalContent"></p>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript: A interatividade
+        document.addEventListener('DOMContentLoaded', () => {
+            const petalas = document.querySelectorAll('.petala');
+            const modal = document.getElementById('modal');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalContent = document.getElementById('modalContent');
+            const closeButton = document.getElementById('closeButton');
+            const body = document.body;
+
+            petalas.forEach(petala => {
+                petala.addEventListener('click', () => {
+                    const title = petala.getAttribute('data-title');
+                    const content = petala.getAttribute('data-content');
+
+                    modalTitle.textContent = title;
+                    modalContent.textContent = content;
+
+                    modal.classList.add('visible');
+                    body.classList.add('modal-active');
+                });
+            });
+
+            const closeModal = () => {
+                modal.classList.remove('visible');
+                body.classList.remove('modal-active');
+            };
+
+            closeButton.addEventListener('click', closeModal);
+            modal.addEventListener('click', (event) => {
+                if (event.target === modal) {
+                    closeModal();
+                }
+            });
+           
+            document.addEventListener('keydown', (event) => {
+                if (event.key === 'Escape' && modal.classList.contains('visible')) {
+                    closeModal();
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
+

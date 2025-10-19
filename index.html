@@ -51,24 +51,32 @@
             color: #5d4037;
             border: 5px solid #ffa000;
             z-index: 10;
-            cursor: default; /* O centro não é clicável */
+            cursor: pointer; /* O centro agora é clicável */
             box-shadow: 0 0 20px rgba(255, 160, 0, 0.5), inset 0 0 10px rgba(255, 255, 255, 0.5);
+            transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+            font-size: clamp(10px, 3.5vw, 16px); /* Controla o tamanho da fonte para caber */
+            padding: 5px; /* Adiciona espaço interno */
+            box-sizing: border-box; /* Garante que o padding não aumente o tamanho total */
+        }
+       
+        .centro:hover {
+            transform: translate(-50%, -50%) scale(1.05);
         }
        
         .petala {
             position: absolute;
             top: 50%;
             left: 50%;
-            margin-left: -14%; /* Metade da largura de 28% */
+            margin-left: -16%; /* Metade da largura de 32% */
             margin-top: -40%;  /* A altura total de 40% para puxar a base para cima */
-            width: 28%;
+            width: 32%;
             height: 40%;
            
             /* Formato de pétala elegante e curvo */
             border-radius: 50% 50% 20% 20% / 70% 70% 30% 30%;
            
             cursor: pointer;
-            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), background 0.3s;
+            transition: transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1), background 0.3s, opacity 0.8s;
             transform-origin: bottom center;
             display: flex;
             justify-content: center;
@@ -91,22 +99,83 @@
         .petala5 { background: linear-gradient(to top, #0096c7, #00b4d8); border: 2px solid #023e8a; }
         .petala6 { background: linear-gradient(to top, #0077b6, #0096c7); border: 2px solid #03045e; }
 
-        /* Posicionamento mais próximo do centro */
-        .petala1 { transform: rotate(0deg)   translateY(-55%); }
-        .petala2 { transform: rotate(60deg)  translateY(-55%); }
-        .petala3 { transform: rotate(120deg) translateY(-55%); }
-        .petala4 { transform: rotate(180deg) translateY(-55%); }
-        .petala5 { transform: rotate(240deg) translateY(-55%); }
-        .petala6 { transform: rotate(300deg) translateY(-55%); }
+        /* Posicionamento mais próximo do centro e com ângulos orgânicos */
+        .petala1 { transform: rotate(0deg)   translateY(-52%); }
+        .petala2 { transform: rotate(58deg)  translateY(-52%); }
+        .petala3 { transform: rotate(118deg) translateY(-52%); }
+        .petala4 { transform: rotate(180deg) translateY(-52%); }
+        .petala5 { transform: rotate(242deg) translateY(-52%); }
+        .petala6 { transform: rotate(302deg) translateY(-52%); }
 
         /* EFEITO HOVER */
         .petala:hover { z-index: 5; }
-        .petala1:hover { background: linear-gradient(to top, #caf0f8, #e9f9fc); transform: rotate(0deg)   translateY(-55%) scale(1.15); }
-        .petala2:hover { background: linear-gradient(to top, #ade8f4, #d7f3f8); transform: rotate(60deg)  translateY(-55%) scale(1.15); }
-        .petala3:hover { background: linear-gradient(to top, #90e0ef, #c1eef7); transform: rotate(120deg) translateY(-55%) scale(1.15); }
-        .petala4:hover { background: linear-gradient(to top, #48cae4, #a0e2f0); transform: rotate(180deg) translateY(-55%) scale(1.15); }
-        .petala5:hover { background: linear-gradient(to top, #00b4d8, #74d8ec); transform: rotate(240deg) translateY(-55%) scale(1.15); }
-        .petala6:hover { background: linear-gradient(to top, #0096c7, #5bbce0); transform: rotate(300deg) translateY(-55%) scale(1.15); }
+        .petala1:hover { background: linear-gradient(to top, #caf0f8, #e9f9fc); transform: rotate(0deg)   translateY(-52%) scale(1.15); }
+        .petala2:hover { background: linear-gradient(to top, #ade8f4, #d7f3f8); transform: rotate(58deg)  translateY(-52%) scale(1.15); }
+        .petala3:hover { background: linear-gradient(to top, #90e0ef, #c1eef7); transform: rotate(118deg) translateY(-52%) scale(1.15); }
+        .petala4:hover { background: linear-gradient(to top, #48cae4, #a0e2f0); transform: rotate(180deg) translateY(-52%) scale(1.15); }
+        .petala5:hover { background: linear-gradient(to top, #00b4d8, #74d8ec); transform: rotate(242deg) translateY(-52%) scale(1.15); }
+        .petala6:hover { background: linear-gradient(to top, #0096c7, #5bbce0); transform: rotate(302deg) translateY(-52%) scale(1.15); }
+
+
+        /* Sub-pétalas decorativas */
+        .sub-petala {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 22%; /* Menores que as pétalas principais */
+            height: 30%;
+            margin-left: -11%; /* Metade da largura */
+            margin-top: -30%; /* Altura total */
+            border-radius: 50% 50% 10% 10% / 80% 80% 20% 20%;
+            transform-origin: bottom center;
+            z-index: 2; /* Ficam atrás das pétalas principais, mas clicáveis */
+            cursor: pointer;
+            transition: transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1), background 0.3s, opacity 0.8s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 5px;
+            box-sizing: border-box;
+            font-size: clamp(10px, 2vw, 12px);
+            font-weight: bold;
+            color: #1b5e20; /* Cor de texto para combinar com o verde */
+            text-align: center;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        /* Cor de verde única para todas as sub-pétalas */
+        .sub-petala1 { background: linear-gradient(to top, #66bb6a, #81c784); border: 2px solid #4caf50; }
+        .sub-petala2 { background: linear-gradient(to top, #66bb6a, #81c784); border: 2px solid #4caf50; }
+        .sub-petala3 { background: linear-gradient(to top, #66bb6a, #81c784); border: 2px solid #4caf50; }
+        .sub-petala4 { background: linear-gradient(to top, #66bb6a, #81c784); border: 2px solid #4caf50; }
+        .sub-petala5 { background: linear-gradient(to top, #66bb6a, #81c784); border: 2px solid #4caf50; }
+        .sub-petala6 { background: linear-gradient(to top, #66bb6a, #81c784); border: 2px solid #4caf50; }
+
+        /* Posicionamento das sub-pétalas nos intervalos com ângulos orgânicos */
+        .sub-petala1 { transform: rotate(29deg)  translateY(-42%); }
+        .sub-petala2 { transform: rotate(88deg)  translateY(-42%); }
+        .sub-petala3 { transform: rotate(149deg) translateY(-42%); }
+        .sub-petala4 { transform: rotate(211deg) translateY(-42%); }
+        .sub-petala5 { transform: rotate(271deg) translateY(-42%); }
+        .sub-petala6 { transform: rotate(331deg) translateY(-42%); }
+
+        /* Efeito hover para sub-pétalas */
+        .sub-petala:hover { z-index: 6; }
+        .sub-petala1:hover { background: #a5d6a7; transform: rotate(29deg)  translateY(-42%) scale(1.15); }
+        .sub-petala2:hover { background: #a5d6a7; transform: rotate(88deg)  translateY(-42%) scale(1.15); }
+        .sub-petala3:hover { background: #a5d6a7; transform: rotate(149deg) translateY(-42%) scale(1.15); }
+        .sub-petala4:hover { background: #a5d6a7; transform: rotate(211deg) translateY(-42%) scale(1.15); }
+        .sub-petala5:hover { background: #a5d6a7; transform: rotate(271deg) translateY(-42%) scale(1.15); }
+        .sub-petala6:hover { background: #a5d6a7; transform: rotate(331deg) translateY(-42%) scale(1.15); }
+
+
+        /* Estado inicial "fechado" da flor */
+        .mandala-container.is-closed .petala,
+        .mandala-container.is-closed .sub-petala {
+            transform: rotate(0deg) translateY(0) scale(0.1);
+            opacity: 0;
+            pointer-events: none; /* Desativa cliques enquanto a flor está fechada */
+        }
 
 
         /* A janela que abre (Modal) */
@@ -194,14 +263,18 @@
 </head>
 <body>
 
-    <!-- HTML: O esqueleto da mandala -->
-    <div class="mandala-container">
-        <div class="centro">
-            Meu Eu<br>Docente
+    <!-- HTML: O esqueleto da mandala --><div class="mandala-container is-closed">
+        <div class="centro" onclick="window.location.href='#'" title="Clique para saber mais"> <!-- Substitua '#' pelo link desejado -->Meu EU<br>Profissional · Docente
         </div>
 
-        <!-- As pétalas -->
-        <div class="petala petala1" data-title="Formação Acadêmica" data-content= "Sou graduado em Medicina Veterinária, com foco clínico em pequenos animais, e pós-graduado em Urgência e Emergência. Desde os 17 anos, tive a oportunidade de atuar como monitor de turmas da Educação Básica e Fundamental, uma experiência que despertou em mim o prazer de compartilhar conhecimento e aprender com cada troca. Apaixonado por tecnologia e inovação, atualmente dedico boa parte do meu tempo ao estudo de programação, buscando unir essas áreas para criar novas formas de cuidar, compreender e transformar o mundo ao meu redor">
+        <!-- As sub-pétalas decorativas --><div class="sub-petala sub-petala1" data-title="Família" data-content="A base familiar e os valores nela construídos são o alicerce da minha formação como pessoa e educador, influenciando a maneira como crio laços e construo relações de confiança.">Família</div>
+        <div class="sub-petala sub-petala2" data-title="Ambiente" data-content="O ambiente, seja ele escolar ou não, tem o poder de nos moldar como profissionais e como pessoas, influenciando diretamente nosso desenvolvimento. Ambientes desfavoráveis nem sempre estimulam o crescimento, mas até mesmo as experiências difíceis somam à construção do nosso “eu”, fortalecendo e ampliando nossa visão de mundo.">Ambiente</div>
+        <div class="sub-petala sub-petala3" data-title="Indivíduo" data-content="As particularidades e individualidades, bem como a forma como observamos o mundo ao nosso redor, são o que nos tornam únicos. Cada experiência é moldada por esses olhares singulares, tornando nossas paixões, vivências, conhecimentos e abordagens completamente únicas.">Indivíduo</div>
+        <div class="sub-petala sub-petala4" data-title="Práticas" data-content="O respeito pelo individual, pelas diferentes formas de aprendizagem, ritmos e particularidades, torna a prática docente algo que vai além do desafio. A busca constante por compreensão e acolhimento é um fator essencial nesse processo.">Práticas</div>
+        <div class="sub-petala sub-petala5" data-title="Curiosidade" data-content="Desenvolver e manter viva a curiosidade é essencial na formação, no ensino, na educação e na própria vida. É ela que mantém o interesse desperto e o aprendizado em constante movimento. Todas as dimensões do ser buscam compreensão, somos curiosos por natureza, atentos e cheios de inquietações. Essa curiosidade deve ultrapassar os limites da sala de aula, pois é ela que forma não apenas bons profissionais, mas também bons seres humanos.">Curiosidade</div>
+        <div class="sub-petala sub-petala6" data-title="Visão" data-content="A minha visão de futuro para a educação vai além do conteúdo; é sobre formar cidadãos empáticos, criativos e preparados para um mundo em constante mudança, onde aprender a aprender é a maior competência.">Visão</div>
+
+        <!-- As pétalas --><div class="petala petala1" data-title="Formação Acadêmica" data-content= "Sou graduado em Medicina Veterinária, com foco clínico em pequenos animais, e pós-graduado em Urgência e Emergência. Desde os 17 anos, tive a oportunidade de atuar como monitor de turmas da Educação Básica e Fundamental, uma experiência que despertou em mim o prazer de compartilhar conhecimento e aprender com cada troca. Apaixonado por tecnologia e inovação, atualmente dedico boa parte do meu tempo ao estudo de programação, buscando unir essas áreas para criar novas formas de cuidar, compreender e transformar o mundo ao meu redor">
             Formação
         </div>
         <div class="petala petala2" data-title="Experiências" data-content="Desde a época de estudante, o ensino sempre me cativou e despertou em mim o desejo constante de aprender algo novo. A construção da docência, de forma a instigar o conhecimento e despertar o interesse pelo aprender, sempre me atraiu e me acompanha como parte de quem sou, seja nas monitorias, auxiliando na construção do saber, ou nas orientações a estagiários.">
@@ -221,8 +294,7 @@
         </div>
     </div>
 
-    <!-- A janela escondida (modal) que aparecerá com o conteúdo -->
-    <div class="modal-overlay" id="modal">
+    <!-- A janela escondida (modal) que aparecerá com o conteúdo --><div class="modal-overlay" id="modal">
         <div class="modal-content">
             <span class="close-button" id="closeButton">&times;</span>
             <h2 id="modalTitle"></h2>
@@ -233,15 +305,26 @@
     <script>
         // JavaScript: A interatividade
         document.addEventListener('DOMContentLoaded', () => {
-            const petalas = document.querySelectorAll('.petala');
+            const mandalaContainer = document.querySelector('.mandala-container');
+            const petalas = document.querySelectorAll('.petala, .sub-petala');
             const modal = document.getElementById('modal');
             const modalTitle = document.getElementById('modalTitle');
             const modalContent = document.getElementById('modalContent');
             const closeButton = document.getElementById('closeButton');
             const body = document.body;
 
+            // Animação para abrir a flor na primeira interação
+            const openFlower = () => {
+                mandalaContainer.classList.remove('is-closed');
+            };
+            mandalaContainer.addEventListener('click', openFlower, { once: true });
+
+
             petalas.forEach(petala => {
-                petala.addEventListener('click', () => {
+                petala.addEventListener('click', (e) => {
+                    // Impede que o clique na pétala acione a abertura da flor se ela já estiver aberta
+                    e.stopPropagation(); 
+                    
                     const title = petala.getAttribute('data-title');
                     const content = petala.getAttribute('data-content');
 

@@ -399,7 +399,15 @@
                     modalTitle.textContent = title;
                     
                     if (imgSrc) {
-                        modalContent.innerHTML = `<img src="${imgSrc}" alt="${title}" style="width:100%; border-radius:10px; display:block;">`;
+                        // Estilo padrão para a maioria das imagens
+                        let imgStyle = 'width:100%; border-radius:10px; display:block;';
+
+                        // Verifica se a pétala clicada é da galeria 5 ou 6 e aplica um estilo diferente
+                        if (petala.classList.contains('photo-petala5') || petala.classList.contains('photo-petala6')) {
+                            // Este estilo limita a altura e centra a imagem se ela ficar mais estreita
+                            imgStyle = 'max-width: 100%; max-height: 400px; border-radius: 10px; display: block; margin: 0 auto;';
+                        }
+                        modalContent.innerHTML = `<img src="${imgSrc}" alt="${title}" style="${imgStyle}">`;
                     } else {
                         modalContent.innerHTML = `<p>${textContent}</p>`;
                     }
@@ -437,8 +445,6 @@
 
 </body>
 </html>
-
-
 
 
 

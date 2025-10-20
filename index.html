@@ -259,6 +259,25 @@
             }
         }
 
+        /* Estilo do rodapé */
+        .page-footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(240, 244, 248, 0.95);
+            padding: 8px;
+            text-align: center;
+            font-size: clamp(10px, 2.5vw, 12px);
+            color: #5d4037;
+            z-index: 1; /* Para ficar atrás da mandala mas visível */
+            border-top: 1px solid #ddd;
+            backdrop-filter: blur(2px);
+        }
+        .page-footer p {
+            margin: 3px 0;
+        }
+
     </style>
 </head>
 <body>
@@ -354,6 +373,12 @@
             });
         });
     </script>
+
+    <footer class="page-footer">
+        <p><strong>Disciplina:</strong> Trabalho e desenvolvimento do Profissional Docente.</p>
+        <p><strong>Profª Drª Lúcia Gracia Ferreira</strong></p>
+        <p><strong>Discente:</strong> Gustavo Marden de Oliveira Neves</p>
+    </footer>
 
 </body>
 </html>

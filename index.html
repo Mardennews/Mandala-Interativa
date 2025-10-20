@@ -71,6 +71,7 @@
             margin-top: -40%;  /* A altura total de 40% para puxar a base para cima */
             width: 32%;
             height: 40%;
+            z-index: 3; /* Garante que fiquem à frente das cinzentas */
            
             /* Formato de pétala elegante e curvo */
             border-radius: 50% 50% 20% 20% / 70% 70% 30% 30%;
@@ -128,7 +129,7 @@
             margin-top: -30%; /* Altura total */
             border-radius: 50% 50% 10% 10% / 80% 80% 20% 20%;
             transform-origin: bottom center;
-            z-index: 2; /* Ficam atrás das pétalas principais, mas clicáveis */
+            z-index: 4; /* Ficam à frente das pétalas azuis e cinzentas */
             cursor: pointer;
             transition: transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1), background 0.3s, opacity 0.8s;
             display: flex;
@@ -169,9 +170,50 @@
         .sub-petala6:hover { background: #a5d6a7; transform: rotate(331deg) translateY(-42%) scale(1.15); }
 
 
+        /* Pétalas de Imagem */
+        .photo-petala {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 28%; /* Mesmo formato das outras pétalas */
+            height: 38%;
+            margin-left: -14%;
+            margin-top: -38%;
+            background: linear-gradient(to top, #d1c4e9, #e1bee7); /* Lilás suave */
+            border-radius: 50% 50% 20% 20% / 70% 70% 30% 30%; /* Mesmo formato */
+            border: 3px solid #b39ddb; /* Borda lilás */
+            z-index: 1; /* Camada mais externa */
+            cursor: pointer;
+            transform-origin: bottom center; /* Alinhamento pela base */
+            transition: transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1), background 0.3s, opacity 0.8s;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+        }
+        .photo-petala:hover {
+            background: #ede7f6; /* Lilás mais claro no hover */
+            z-index: 7;
+        }
+
+        /* Posicionamento das pétalas de imagem */
+        .photo-petala1 { transform: rotate(29deg)  translateY(-68%); }
+        .photo-petala2 { transform: rotate(88deg)  translateY(-68%); }
+        .photo-petala3 { transform: rotate(149deg) translateY(-68%); }
+        .photo-petala4 { transform: rotate(211deg) translateY(-68%); }
+        .photo-petala5 { transform: rotate(271deg) translateY(-68%); }
+        .photo-petala6 { transform: rotate(331deg) translateY(-68%); }
+
+        /* Efeito hover para as pétalas de imagem */
+        .photo-petala1:hover { transform: rotate(29deg)  translateY(-68%) scale(1.15); }
+        .photo-petala2:hover { transform: rotate(88deg)  translateY(-68%) scale(1.15); }
+        .photo-petala3:hover { transform: rotate(149deg) translateY(-68%) scale(1.15); }
+        .photo-petala4:hover { transform: rotate(211deg) translateY(-68%) scale(1.15); }
+        .photo-petala5:hover { transform: rotate(271deg) translateY(-68%) scale(1.15); }
+        .photo-petala6:hover { transform: rotate(331deg) translateY(-68%) scale(1.15); }
+
+
         /* Estado inicial "fechado" da flor */
         .mandala-container.is-closed .petala,
-        .mandala-container.is-closed .sub-petala {
+        .mandala-container.is-closed .sub-petala,
+        .mandala-container.is-closed .photo-petala {
             transform: rotate(0deg) translateY(0) scale(0.1);
             opacity: 0;
             pointer-events: none; /* Desativa cliques enquanto a flor está fechada */
@@ -297,10 +339,10 @@
             Bagagem Profissional
         </div>
         <div class="petala petala2" data-title="Experiências" data-content="Desde a época de estudante, o ensino sempre me cativou, despertando em mim o desejo constante de aprender algo novo. A construção da docência, de forma a instigar o conhecimento e o interesse pela aprendizagem, sempre me atraiu e acompanha-me como parte de quem sou, seja nas monitorias, a auxiliar na construção do saber, ou nas orientações a estagiários.">
-            Prática
+            Experiências
         </div>
         <div class="petala petala3" data-title="Vivências" data-content="Como filho de professores, cresci cercado pelo ambiente escolar; a educação sempre fez parte da minha rotina e da minha formação como pessoa. Na adolescência, atuei como monitor de informática para turmas do Ensino Fundamental I. Já na graduação, participei em projetos e ligas académicas, mas foi na sala de aula que encontrei um espaço que sempre me acompanhou. Antes da pandemia, ministrei aulas de reforço em matemática básica e atuei como professor substituto de matemática para alunos do 6.º ao 9.º ano. Afastei-me da docência direta para assumir funções de orientação e coordenação, auxiliando colegas de profissão. Neste ano, retornei à sala de aula como professor substituto de Ciências, reafirmando o quanto o ensino e a partilha de conhecimento continuam a ser parte essencial da minha motivação.">
-            Colaboração
+            Trajetória
         </div>
         <div class="petala petala4" data-title="Bagagem Pessoal" data-content="A frase clássica “a educação é a única coisa que ninguém nos pode roubar” sempre me acompanhou. Tive sempre prazer em aprender e, com o tempo, percebi que também tinha facilidade em ensinar. Gosto de estar em constante aprendizagem e de me envolver com o que acontece ao meu redor, procurando participar ativamente na sociedade e contribuir de forma positiva.">
             Bagagem Pessoal
@@ -311,6 +353,13 @@
         <div class="petala petala6" data-title="Visão de Futuro" data-content="Definir quem desejo ser, ou o que serei daqui a um ano, é uma pergunta que me acompanha e me desperta a vontade constante de evoluir e aprender. Ainda assim, percebo que o que realmente me traz felicidade é o ato de partilhar: momentos, vivências e experiências, sempre únicas na sua essência e capazes de transformar não apenas a mim, mas também aqueles que caminham ao meu lado.">
             Futuro
         </div>
+
+        <!-- Pétalas de Imagem --><div class="photo-petala photo-petala1" data-title="Família" data-src="https://github.com/Mardennews/Mandala-Interativa/blob/main/WhatsApp%20Image%202025-10-20%20at%2012.27.04.jpeg?raw=true"></div>
+        <div class="photo-petala photo-petala2" data-title="Escola" data-src="https://github.com/Mardennews/Mandala-Interativa/blob/main/WhatsApp%20Image%202025-10-20%20at%2013.12.04.jpeg?raw=true"></div>
+        <div class="photo-petala photo-petala3" data-title="Sala de Aula" data-src="https://github.com/Mardennews/Mandala-Interativa/blob/main/WhatsApp%20Image%202025-10-20%20at%2012.24.20.jpeg?raw=true"></div>
+        <div class="photo-petala photo-petala4" data-title="PROJETOS DE EXTENSÃO" data-src="https://github.com/Mardennews/Mandala-Interativa/blob/main/WhatsApp%20Image%202025-10-20%20at%2014.00.45.jpeg?raw=true"></div>
+        <div class="photo-petala photo-petala5" data-title="Graduação" data-src="https://github.com/Mardennews/Mandala-Interativa/blob/main/WhatsApp%20Image%202025-10-20%20at%2013.42.39.jpeg?raw=true"></div>
+        <div class="photo-petala photo-petala6" data-title="PROFISSIONAL" data-src="https://github.com/Mardennews/Mandala-Interativa/blob/main/WhatsApp%20Image%202025-10-20%20at%2014.19.01%20(1).jpeg?raw=true"></div>
     </div>
 
     <!-- A janela escondida (modal) que aparecerá com o conteúdo --><div class="modal-overlay" id="modal">
@@ -325,7 +374,7 @@
         // JavaScript: A interatividade
         document.addEventListener('DOMContentLoaded', () => {
             const mandalaContainer = document.querySelector('.mandala-container');
-            const petalas = document.querySelectorAll('.petala, .sub-petala');
+            const petalas = document.querySelectorAll('.petala, .sub-petala, .photo-petala');
             const modal = document.getElementById('modal');
             const modalTitle = document.getElementById('modalTitle');
             const modalContent = document.getElementById('modalContent');
@@ -344,10 +393,16 @@
                     e.stopPropagation(); 
                     
                     const title = petala.getAttribute('data-title');
-                    const content = petala.getAttribute('data-content');
+                    const textContent = petala.getAttribute('data-content');
+                    const imgSrc = petala.getAttribute('data-src');
 
                     modalTitle.textContent = title;
-                    modalContent.textContent = content;
+                    
+                    if (imgSrc) {
+                        modalContent.innerHTML = `<img src="${imgSrc}" alt="${title}" style="width:100%; border-radius:10px; display:block;">`;
+                    } else {
+                        modalContent.innerHTML = `<p>${textContent}</p>`;
+                    }
 
                     modal.classList.add('visible');
                     body.classList.add('modal-active');
@@ -382,6 +437,24 @@
 
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -8,6 +8,15 @@
         /* CSS: A aparência da nossa mandala */
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
 
+        @keyframes fadeInMandala {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
         body {
             font-family: 'Inter', sans-serif;
             background-color: #f0f4f8; /* Um fundo suave e neutro */
@@ -26,6 +35,7 @@
             width: clamp(280px, 80vw, 450px); 
             height: clamp(280px, 80vw, 450px);
             transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), filter 0.5s;
+            animation: fadeInMandala 1.2s ease-out forwards;
         }
 
         /* Efeito de "abrir" a flor quando o modal está visível */
@@ -142,15 +152,9 @@
             color: #1b5e20; /* Cor de texto para combinar com o verde */
             text-align: center;
             -webkit-tap-highlight-color: transparent;
+            background: linear-gradient(to top, #66bb6a, #81c784); 
+            border: 2px solid #4caf50;
         }
-
-        /* Cor de verde única para todas as sub-pétalas */
-        .sub-petala1 { background: linear-gradient(to top, #66bb6a, #81c784); border: 2px solid #4caf50; }
-        .sub-petala2 { background: linear-gradient(to top, #66bb6a, #81c784); border: 2px solid #4caf50; }
-        .sub-petala3 { background: linear-gradient(to top, #66bb6a, #81c784); border: 2px solid #4caf50; }
-        .sub-petala4 { background: linear-gradient(to top, #66bb6a, #81c784); border: 2px solid #4caf50; }
-        .sub-petala5 { background: linear-gradient(to top, #66bb6a, #81c784); border: 2px solid #4caf50; }
-        .sub-petala6 { background: linear-gradient(to top, #66bb6a, #81c784); border: 2px solid #4caf50; }
 
         /* Posicionamento das sub-pétalas nos intervalos com ângulos orgânicos */
         .sub-petala1 { transform: rotate(29deg)  translateY(-42%); }
@@ -161,13 +165,16 @@
         .sub-petala6 { transform: rotate(331deg) translateY(-42%); }
 
         /* Efeito hover para sub-pétalas */
-        .sub-petala:hover { z-index: 6; }
-        .sub-petala1:hover { background: #a5d6a7; transform: rotate(29deg)  translateY(-42%) scale(1.15); }
-        .sub-petala2:hover { background: #a5d6a7; transform: rotate(88deg)  translateY(-42%) scale(1.15); }
-        .sub-petala3:hover { background: #a5d6a7; transform: rotate(149deg) translateY(-42%) scale(1.15); }
-        .sub-petala4:hover { background: #a5d6a7; transform: rotate(211deg) translateY(-42%) scale(1.15); }
-        .sub-petala5:hover { background: #a5d6a7; transform: rotate(271deg) translateY(-42%) scale(1.15); }
-        .sub-petala6:hover { background: #a5d6a7; transform: rotate(331deg) translateY(-42%) scale(1.15); }
+        .sub-petala:hover { 
+            z-index: 6; 
+            background: #a5d6a7;
+        }
+        .sub-petala1:hover { transform: rotate(29deg)  translateY(-42%) scale(1.15); }
+        .sub-petala2:hover { transform: rotate(88deg)  translateY(-42%) scale(1.15); }
+        .sub-petala3:hover { transform: rotate(149deg) translateY(-42%) scale(1.15); }
+        .sub-petala4:hover { transform: rotate(211deg) translateY(-42%) scale(1.15); }
+        .sub-petala5:hover { transform: rotate(271deg) translateY(-42%) scale(1.15); }
+        .sub-petala6:hover { transform: rotate(331deg) translateY(-42%) scale(1.15); }
 
 
         /* Pétalas de Imagem */
@@ -329,44 +336,44 @@
         </div>
 
         <!-- As sub-pétalas decorativas --><div class="sub-petala sub-petala1" data-title="Família" data-content="A base familiar e os valores nela construídos são o alicerce da minha formação como pessoa e educador, influenciando a maneira como crio laços e construo relações de confiança.">Família</div>
-        <div class="sub-petala sub-petala2" data-title="Ambiente" data-content="O ambiente, seja ele escolar ou não, tem o poder de nos moldar como profissionais e como pessoas, influenciando diretamente o nosso desenvolvimento. Ambientes desfavoráveis nem sempre estimulam o crescimento, mas até as experiências mais difíceis somam à construção do nosso “eu”, fortalecendo e ampliando a nossa visão de mundo.">Ambiente</div>
-        <div class="sub-petala sub-petala3" data-title="Subjetividade" data-content="As particularidades e individualidades, bem como a forma como observamos o mundo ao nosso redor, são o que nos tornam únicos. Cada experiência é moldada por estes olhares singulares, tornando as nossas paixões, vivências, conhecimentos e abordagens completamente únicas.">Subjetividade</div>
-        <div class="sub-petala sub-petala4" data-title="Abordagem" data-content="O respeito pelo individual, pelas diferentes formas de aprendizagem, ritmos e particularidades, torna a prática docente algo que vai além do desafio. A busca constante por compreensão e acolhimento é um fator essencial neste processo.">Abordagem</div>
-        <div class="sub-petala sub-petala5" data-title="Curiosidade" data-content="Desenvolver e manter viva a curiosidade é essencial na formação, no ensino, na educação e na própria vida. É ela que mantém o interesse desperto e a aprendizagem em constante movimento. Todas as dimensões do ser buscam compreensão; somos curiosos por natureza, atentos e cheios de inquietações. Essa curiosidade deve ultrapassar os limites da sala de aula, pois é ela que forma não apenas bons profissionais, mas também bons seres humanos.">Curiosidade</div>
-        <div class="sub-petala sub-petala6" data-title="Propósitos" data-content="A minha visão de futuro para a educação vai além do conteúdo; é sobre formar cidadãos empáticos, criativos e preparados para um mundo em constante mudança, onde aprender a aprender é a maior competência.">Propósitos</div>
+        <div class="sub-petala sub-petala2" data-title="Ambiente" data-content="O ambiente, seja ele escolar ou não, tem o poder de nos moldar como profissionais e pessoas, influenciando diretamente nosso desenvolvimento. Ambientes desfavoráveis nem sempre estimulam o crescimento, mas até as experiências mais difíceis somam à construção do nosso “eu”, fortalecendo e ampliando nossa visão de mundo.">Ambiente</div>
+        <div class="sub-petala sub-petala3" data-title="Subjetividade" data-content="As particularidades e individualidades, bem como a forma como observamos o mundo ao nosso redor, são o que nos tornam únicos. Cada experiência é moldada por esses olhares singulares, tornando nossas paixões, vivências, conhecimentos e abordagens completamente únicas.">Subjetividade</div>
+        <div class="sub-petala sub-petala4" data-title="Abordagem" data-content="O respeito pelo indivíduo, pelas diferentes formas de aprendizagem, ritmos e particularidades, torna a prática docente algo que vai além do desafio. A busca constante por compreensão e acolhimento é um fator essencial nesse processo.">Abordagem</div>
+        <div class="sub-petala sub-petala5" data-title="Curiosidade" data-content="Desenvolver e manter viva a curiosidade é essencial na formação, no ensino, na educação e na vida. É ela que mantém o interesse desperto e o aprendizado em constante movimento. Todas as dimensões do ser buscam compreensão; somos curiosos por natureza, atentos e cheios de inquietações. Essa curiosidade deve ultrapassar os limites da sala de aula, pois é ela que forma não apenas bons profissionais, mas também bons seres humanos.">Curiosidade</div>
+        <div class="sub-petala sub-petala6" data-title="Propósitos" data-content="Minha visão de futuro para a educação vai além do conteúdo; é sobre formar cidadãos empáticos, criativos e preparados para um mundo em constante mudança, onde aprender a aprender é a maior competência.">Propósitos</div>
 
-        <!-- As pétalas --><div class="petala petala1" data-title="Bagagem Profissional" data-content= "Graduado em Medicina Veterinária, com foco clínico em pequenos animais, e pós-graduado em Urgência e Emergência. Desde os 17 anos, tenho atuado como monitor de turmas da Educação Básica e Fundamental, uma experiência que despertou em mim o prazer de partilhar conhecimento e aprender com cada troca. Apaixonado por tecnologia e inovação, dedico atualmente boa parte do meu tempo ao estudo de programação, procurando unir estas áreas para criar novas formas de cuidar, compreender e transformar o mundo ao meu redor.">
+        <!-- As pétalas --><div class="petala petala1" data-title="Bagagem Profissional" data-content= "Graduado em Medicina Veterinária, com foco clínico em pequenos animais, e pós-graduado em Urgência e Emergência. Desde os 17 anos, tenho atuado como monitor de turmas da Educação Básica e Fundamental, uma experiência que despertou em mim o prazer de compartilhar conhecimento e aprender com cada troca. Apaixonado por tecnologia e inovação, dedico atualmente boa parte do meu tempo ao estudo de programação, buscando unir essas áreas para criar novas formas de cuidar, compreender e transformar o mundo ao meu redor.">
             Bagagem Profissional
         </div>
-        <div class="petala petala2" data-title="Experiências" data-content="Desde a época de estudante, o ensino sempre me cativou, despertando em mim o desejo constante de aprender algo novo. A construção da docência, de forma a instigar o conhecimento e o interesse pela aprendizagem, sempre me atraiu e acompanha-me como parte de quem sou, seja nas monitorias, a auxiliar na construção do saber, ou nas orientações a estagiários.">
+        <div class="petala petala2" data-title="Experiências" data-content="Desde a época de estudante, o ensino sempre me cativou, despertando em mim o desejo constante de aprender algo novo. A construção da docência, de forma a instigar o conhecimento e o interesse pela aprendizagem, sempre me atraiu e me acompanha como parte de quem sou, seja nas monitorias, auxiliando na construção do saber, ou nas orientações a estagiários.">
             Experiências
         </div>
-        <div class="petala petala3" data-title="Vivências" data-content="Como filho de professores, cresci cercado pelo ambiente escolar; a educação sempre fez parte da minha rotina e da minha formação como pessoa. Na adolescência, atuei como monitor de informática para turmas do Ensino Fundamental I. Já na graduação, participei em projetos e ligas académicas, mas foi na sala de aula que encontrei um espaço que sempre me acompanhou. Antes da pandemia, ministrei aulas de reforço em matemática básica e atuei como professor substituto de matemática para alunos do 6.º ao 9.º ano. Afastei-me da docência direta para assumir funções de orientação e coordenação, auxiliando colegas de profissão. Neste ano, retornei à sala de aula como professor substituto de Ciências, reafirmando o quanto o ensino e a partilha de conhecimento continuam a ser parte essencial da minha motivação.">
+        <div class="petala petala3" data-title="Vivências" data-content="Como filho de professores, cresci cercado pelo ambiente escolar; a educação sempre fez parte da minha rotina e da minha formação como pessoa. Na adolescência, atuei como monitor de informática para turmas do Ensino Fundamental I. Já na graduação, participei de projetos e ligas acadêmicas, mas foi na sala de aula que encontrei um espaço que sempre me acompanhou. Antes da pandemia, ministrei aulas de reforço em matemática básica e atuei como professor substituto de matemática para alunos do 6º ao 9º ano. Afastei-me da docência direta para assumir funções de orientação e coordenação, auxiliando colegas de profissão. Neste ano, retornei à sala de aula como professor substituto de Ciências, reafirmando o quanto o ensino e a partilha de conhecimento continuam sendo parte essencial da minha motivação.">
             Trajetória
         </div>
-        <div class="petala petala4" data-title="Bagagem Pessoal" data-content="A frase clássica “a educação é a única coisa que ninguém nos pode roubar” sempre me acompanhou. Tive sempre prazer em aprender e, com o tempo, percebi que também tinha facilidade em ensinar. Gosto de estar em constante aprendizagem e de me envolver com o que acontece ao meu redor, procurando participar ativamente na sociedade e contribuir de forma positiva.">
+        <div class="petala petala4" data-title="Bagagem Pessoal" data-content="A frase clássica “a educação é a única coisa que ninguém nos pode roubar” sempre me acompanhou. Sempre tive prazer em aprender e, com o tempo, percebi que também tinha facilidade em ensinar. Gosto de estar em constante aprendizado e de me envolver com o que acontece ao meu redor, buscando participar ativamente da sociedade e contribuir de forma positiva.">
             Bagagem Pessoal
         </div>
-        <div class="petala petala5" data-title="Inovação e Criatividade" data-content="A tecnologia é uma ferramenta incrível. A internet possibilita e facilita todas as coisas imagináveis, e até aquelas que ainda nem conseguimos imaginar. O conhecimento sempre existiu, mas com a tecnologia tornou-se muito mais acessível. Hoje, aprender é uma experiência ao alcance de todos, seja por meio de cursos, vivências ou formações. Este novo mundo é, sem dúvida, algo fascinante.">
+        <div class="petala petala5" data-title="Inovação e Criatividade" data-content="A tecnologia é uma ferramenta incrível. A internet possibilita e facilita todas as coisas imagináveis, e até aquelas que ainda nem conseguimos imaginar. O conhecimento sempre existiu, mas com a tecnologia se tornou muito mais acessível. Hoje, aprender é uma experiência ao alcance de todos, seja por meio de cursos, vivências ou formações. Esse novo mundo é, sem dúvida, algo fascinante.">
             Inovação
         </div>
-        <div class="petala petala6" data-title="Visão de Futuro" data-content="Definir quem desejo ser, ou o que serei daqui a um ano, é uma pergunta que me acompanha e me desperta a vontade constante de evoluir e aprender. Ainda assim, percebo que o que realmente me traz felicidade é o ato de partilhar: momentos, vivências e experiências, sempre únicas na sua essência e capazes de transformar não apenas a mim, mas também aqueles que caminham ao meu lado.">
+        <div class="petala petala6" data-title="Visão de Futuro" data-content="Definir quem desejo ser, ou o que serei daqui a um ano, é uma pergunta que me acompanha e desperta em mim a vontade constante de evoluir e aprender. Ainda assim, percebo que o que realmente me traz felicidade é o ato de compartilhar: momentos, vivências e experiências, sempre únicas em sua essência e capazes de transformar não apenas a mim, mas também aqueles que caminham ao meu lado.">
             Futuro
         </div>
 
-        <!-- Pétalas de Imagem --><div class="photo-petala photo-petala1" data-title="Família" data-src="https://github.com/Mardennews/Mandala-Interativa/blob/main/WhatsApp%20Image%202025-10-20%20at%2012.27.04.jpeg?raw=true"></div>
-        <div class="photo-petala photo-petala2" data-title="Escola" data-src="https://github.com/Mardennews/Mandala-Interativa/blob/main/WhatsApp%20Image%202025-10-20%20at%2013.12.04.jpeg?raw=true"></div>
-        <div class="photo-petala photo-petala3" data-title="Sala de Aula" data-src="https://github.com/Mardennews/Mandala-Interativa/blob/main/WhatsApp%20Image%202025-10-20%20at%2012.24.20.jpeg?raw=true"></div>
-        <div class="photo-petala photo-petala4" data-title="PROJETOS DE EXTENSÃO" data-src="https://github.com/Mardennews/Mandala-Interativa/blob/main/WhatsApp%20Image%202025-10-20%20at%2014.00.45.jpeg?raw=true"></div>
-        <div class="photo-petala photo-petala5" data-title="Graduação" data-src="https://github.com/Mardennews/Mandala-Interativa/blob/main/WhatsApp%20Image%202025-10-20%20at%2013.42.39.jpeg?raw=true"></div>
-        <div class="photo-petala photo-petala6" data-title="PROFISSIONAL" data-src="https://github.com/Mardennews/Mandala-Interativa/blob/main/WhatsApp%20Image%202025-10-20%20at%2014.19.01%20(1).jpeg?raw=true"></div>
+        <!-- Pétalas de Imagem --><div class="photo-petala photo-petala1" data-title="Família" data-src="https://raw.githubusercontent.com/Mardennews/Mandala-Interativa/main/WhatsApp%20Image%202025-10-20%20at%2012.27.04.jpeg">Família</div>
+        <div class="photo-petala photo-petala2" data-title="Escola" data-src="https://raw.githubusercontent.com/Mardennews/Mandala-Interativa/main/WhatsApp%20Image%202025-10-20%20at%2013.12.04.jpeg">Escola</div>
+        <div class="photo-petala photo-petala3" data-title="Sala de Aula" data-src="https://raw.githubusercontent.com/Mardennews/Mandala-Interativa/main/WhatsApp%20Image%202025-10-20%20at%2012.24.20.jpeg">Sala de Aula</div>
+        <div class="photo-petala photo-petala4" data-title="PROJETOS DE EXTENSÃO" data-src="https://raw.githubusercontent.com/Mardennews/Mandala-Interativa/main/WhatsApp%20Image%202025-10-20%20at%2014.00.45.jpeg">Projetos</div>
+        <div class="photo-petala photo-petala5" data-title="Graduação" data-src="https://raw.githubusercontent.com/Mardennews/Mandala-Interativa/main/WhatsApp%20Image%202025-10-20%20at%2013.42.39.jpeg">Graduação</div>
+        <div class="photo-petala photo-petala6" data-title="PROFISSIONAL" data-src="https://raw.githubusercontent.com/Mardennews/Mandala-Interativa/main/WhatsApp%20Image%202025-10-20%20at%2014.19.01%20(1).jpeg">Profissional</div>
     </div>
 
     <!-- A janela escondida (modal) que aparecerá com o conteúdo --><div class="modal-overlay" id="modal">
         <div class="modal-content">
             <span class="close-button" id="closeButton">&times;</span>
             <h2 id="modalTitle"></h2>
-            <p id="modalContent"></p>
+            <div id="modalContent"></div>
         </div>
     </div>
 
@@ -438,33 +445,12 @@
     </script>
 
     <footer class="page-footer">
-        <p><strong>Disciplina:</strong> Trabalho e desenvolvimento do Profissional Docente.</p>
-        <p><strong>Profª Drª Lúcia Gracia Ferreira</strong></p>
+        <p><strong>Disciplina:</strong> Trabalho e Desenvolvimento do Profissional Docente</p>
+        <p><strong>Profª. Drª. Lúcia Gracia Ferreira</strong></p>
         <p><strong>Discente:</strong> Gustavo Marden de Oliveira Neves</p>
     </footer>
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
